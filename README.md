@@ -151,6 +151,20 @@ persistent storage at `/data`.
 
 `fly.toml` already sets `CLIENT_IP_HEADER=Fly-Client-IP` for per-IP rate limits and keeps one machine running.
 
+#### Deploying from GitHub through the Fly dashboard
+
+Fly's GitHub launcher builds from the repo, which has no `bot.py`, so supply the bot as a secret instead. In
+the app's **Secrets** page add:
+
+- `SECRET_KEY`: any long random string, for example from `openssl rand -hex 32`.
+- `BOT_SOURCE_B64`: `bot.py` gzipped and base64-encoded, made on your own machine with:
+  ```bash
+  python3 -c "import gzip,base64,sys;print(base64.b64encode(gzip.compress(open('bot.py','rb').read(),9)).decode())"
+  ```
+
+At startup the app writes the bot to a private temporary file and removes the secret from its environment.
+Without both secrets the server refuses to start, and Fly reports that it can't find machines to route to.
+
 ### Render
 
 Render builds from your git repo, which must not contain `bot.py`. Instead, give the bot to the service as a

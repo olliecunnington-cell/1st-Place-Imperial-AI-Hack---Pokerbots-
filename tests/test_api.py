@@ -281,3 +281,18 @@ def test_match_creation_rate_limited_per_ip(client):
             login(c, f"ipuser_{i}")
             codes.append(c.post("/api/matches", json={}).status_code)
     assert codes[:limit] == [200] * limit and codes[limit:] == [429, 429]
+
+
+def test_bot_loaded_from_secret(monkeypatch):
+    import base64
+    import gzip
+    import stat
+    from pathlib import Path
+    from app.bot_adapter import find_bot_path
+    src = Path(__file__).with_name("fake_bot.py").read_bytes()
+    monkeypatch.setenv("BOT_SOURCE_B64", base64.b64encode(gzip.compress(src)).decode())
+    path = find_bot_path()
+    assert Path(path).read_bytes() == src
+    assert stat.S_IMODE(os.stat(path).st_mode) == 0o400
+    assert stat.S_IMODE(os.stat(os.path.dirname(path)).st_mode) == 0o700
+    assert "BOT_SOURCE_B64" not in os.environ          # removed so child processes don't inherit it

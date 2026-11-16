@@ -17,13 +17,39 @@ from .engine import Hand
 log = logging.getLogger("poker.bot")
 
 
+def _bot_from_secret() -> str | None:
+    """Materialise the bot from the BOT_SOURCE_B64 secret (gzip + base64 of bot.py).
+
+    For hosts that build from git (e.g. Fly's GitHub launcher), where bot.py can't be in the
+    build. The file goes to a fresh owner-only temp dir and the secret is removed from this
+    process's environment so nothing spawned later inherits it.
+    """
+    enc = os.environ.pop("BOT_SOURCE_B64", None)
+    if not enc:
+        return None
+    import base64
+    import gzip
+    import tempfile
+    src = gzip.decompress(base64.b64decode("".join(enc.split())))
+    d = tempfile.mkdtemp(prefix="bot-")            # created 0700
+    path = os.path.join(d, "bot.py")
+    fd = os.open(path, os.O_WRONLY | os.O_CREAT | os.O_EXCL, 0o400)
+    with os.fdopen(fd, "wb") as f:
+        f.write(src)
+    return path
+
+
 def find_bot_path() -> str:
+    secret_path = _bot_from_secret()
+    if secret_path:
+        return secret_path
     candidates = [os.environ.get("BOT_PATH"), "/etc/secrets/bot.py",
                   str(Path(__file__).resolve().parent.parent / "bot.py")]
     for c in candidates:
         if c and Path(c).is_file():
             return c
-    raise RuntimeError("bot.py not found: set BOT_PATH or place bot.py in the project root")
+    raise RuntimeError("bot.py not found: set the BOT_SOURCE_B64 secret, set BOT_PATH, "
+                       "or place bot.py in the project root")
 
 
 # ------------------------------------------------------------------ state translation
