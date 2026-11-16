@@ -1,0 +1,22 @@
+# Render Blueprint. bot.py is NOT in the repo: add it in the dashboard as a Secret File
+# named bot.py (it appears at /etc/secrets/bot.py). See README "Deploy to Render".
+services:
+  - type: web
+    name: headsup-vs-bot
+    runtime: docker
+    plan: starter            # persistent disks need a paid instance
+    healthCheckPath: /healthz
+    numInstances: 1          # matches live in memory; do not scale out
+    envVars:
+      - key: APP_ENV
+        value: production
+      - key: DB_PATH
+        value: /data/poker.db
+      - key: TRUSTED_PROXY_HOPS
+        value: "1"
+      - key: SECRET_KEY
+        generateValue: true
+    disk:
+      name: poker-data
+      mountPath: /data
+      sizeGB: 1

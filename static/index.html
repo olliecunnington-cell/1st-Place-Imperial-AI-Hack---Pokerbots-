@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Heads-Up vs The Bot</title>
+<link rel="icon" href="/static/img/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body class="page-landing">
+<main class="landing">
+  <div class="landing-card">
+    <div class="logo-cards" aria-hidden="true">
+      <div class="card c-red tilt-l"><span class="rank">A</span><span class="suit">♥</span><span class="pip">♥</span></div>
+      <div class="card tilt-r"><span class="rank">A</span><span class="suit">♠</span><span class="pip">♠</span></div>
+    </div>
+    <h1>Heads-Up vs The Bot</h1>
+    <p class="tagline">No-limit Texas hold'em against a competition-winning poker bot.</p>
+    <ul class="format">
+      <li><strong id="fmt-hands">50</strong> hands per match</li>
+      <li>Blinds <strong>10/20</strong></li>
+      <li><strong>100bb</strong> stacks, reset each hand</li>
+    </ul>
+    <form id="name-form" autocomplete="off" novalidate>
+      <label for="username">Pick a username</label>
+      <input id="username" name="username" maxlength="16" minlength="3" required
+             pattern="[A-Za-z0-9_]{3,16}" placeholder="e.g. river_rat" spellcheck="false" autocapitalize="off">
+      <p class="hint">3 to 16 letters, numbers or underscores. No password needed: this browser keeps your name.</p>
+      <p id="form-error" class="error" role="alert"></p>
+      <button type="submit" class="btn btn-primary btn-big" id="play-btn">Take a seat</button>
+    </form>
+    <div id="resume" class="resume hidden">
+      <p>You have a match in progress.</p>
+      <a class="btn btn-primary" href="/play">Resume match</a>
+    </div>
+    <nav class="landing-links"><a href="/leaderboard">Leaderboard →</a></nav>
+  </div>
+</main>
+<script src="/static/js/common.js"></script>
+<script src="/static/js/landing.js"></script>
+</body>
+</html>

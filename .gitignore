@@ -1,0 +1,19 @@
+# ---- PRIVATE: the competition bot. Never commit it to a public repo. ----
+bot.py
+/bot.py
+*bot*.py.bak
+private/
+
+# local data
+data/
+*.db
+*.db-wal
+*.db-shm
+.env
+
+# python
+__pycache__/
+*.pyc
+.pytest_cache/
+.venv/
+venv/

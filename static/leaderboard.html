@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Leaderboard · Heads-Up vs The Bot</title>
+<link rel="icon" href="/static/img/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body class="page-board">
+<header class="hud">
+  <a class="hud-brand" href="/">♠ Heads-Up</a>
+  <div class="hud-actions"><a class="btn btn-primary btn-sm" href="/">Play</a></div>
+</header>
+<main class="board-page">
+  <section class="bot-record" aria-labelledby="bot-h">
+    <h2 id="bot-h">🤖 The Bot vs everyone</h2>
+    <div class="record-grid" id="bot-record">
+      <div class="rec"><span class="rec-v" id="rec-matches">–</span><span class="rec-l">matches</span></div>
+      <div class="rec"><span class="rec-v" id="rec-wl">–</span><span class="rec-l">won · lost · tied</span></div>
+      <div class="rec"><span class="rec-v" id="rec-bb">–</span><span class="rec-l">net big blinds</span></div>
+      <div class="rec"><span class="rec-v" id="rec-bb100">–</span><span class="rec-l">bb / 100 hands</span></div>
+    </div>
+    <p class="muted" id="rec-foot"></p>
+  </section>
+
+  <section aria-labelledby="lb-h">
+    <h2 id="lb-h">Leaderboard</h2>
+    <p class="muted">Best completed match per player, ranked by net big blinds won over <span id="lb-hands">50</span> hands.</p>
+    <div class="table-scroll">
+      <table class="lb">
+        <thead><tr><th>#</th><th>Player</th><th class="num">Best (bb)</th><th class="num">bb/100</th><th class="num">Matches</th><th class="hide-sm">Date</th></tr></thead>
+        <tbody id="lb-body"><tr><td colspan="6" class="muted">Loading…</td></tr></tbody>
+      </table>
+    </div>
+  </section>
+</main>
+<script src="/static/js/common.js"></script>
+<script src="/static/js/leaderboard.js"></script>
+</body>
+</html>

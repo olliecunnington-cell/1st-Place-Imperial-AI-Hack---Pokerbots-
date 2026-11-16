@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Table · Heads-Up vs The Bot</title>
+<link rel="icon" href="/static/img/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body class="page-play">
+<header class="hud">
+  <a class="hud-brand" href="/">♠ Heads-Up</a>
+  <div class="hud-stats">
+    <span class="stat"><span class="stat-label">Hand</span> <b id="hud-hand">–</b></span>
+    <span class="stat"><span class="stat-label">Net</span> <b id="hud-net">0</b></span>
+  </div>
+  <div class="hud-actions">
+    <button class="btn btn-ghost btn-sm" id="history-toggle" aria-expanded="false" aria-controls="history">History</button>
+    <button class="btn btn-ghost btn-sm" id="quit-btn">Quit</button>
+  </div>
+</header>
+
+<div class="play-layout">
+  <section class="table-wrap">
+    <div class="table" id="table">
+      <div class="rail"><div class="felt">
+        <div class="felt-logo" aria-hidden="true">♠ ♥ ♣ ♦</div>
+
+        <div class="seat seat-bot" id="seat-bot">
+          <div class="hole" id="bot-cards"></div>
+          <div class="plate">
+            <div class="avatar avatar-bot" aria-hidden="true">🤖</div>
+            <div class="plate-text"><div class="pname">The Bot</div><div class="pstack" id="bot-stack">2,000</div></div>
+            <div class="thinking hidden" id="bot-thinking" aria-label="Bot is thinking"><i></i><i></i><i></i></div>
+          </div>
+          <div class="bubble hidden" id="bot-bubble"></div>
+        </div>
+
+        <div class="bet bet-bot" id="bet-bot"></div>
+        <div class="dealer-btn" id="dealer-btn">D</div>
+
+        <div class="center">
+          <div class="pot" id="pot"><div class="chips" id="pot-chips"></div><div class="pot-label">Pot <b id="pot-amt">0</b></div></div>
+          <div class="board" id="board"></div>
+        </div>
+
+        <div class="bet bet-you" id="bet-you"></div>
+
+        <div class="seat seat-you" id="seat-you">
+          <div class="bubble hidden" id="you-bubble"></div>
+          <div class="hole" id="you-cards"></div>
+          <div class="plate">
+            <div class="avatar avatar-you" aria-hidden="true">👤</div>
+            <div class="plate-text"><div class="pname" id="you-name">You</div><div class="pstack" id="you-stack">2,000</div></div>
+          </div>
+        </div>
+
+      </div></div>
+    </div>
+
+    <div class="controls" id="controls">
+      <div class="banner hidden" id="banner" role="status" aria-live="polite">
+          <div class="banner-title" id="banner-title"></div>
+          <div class="banner-sub" id="banner-sub"></div>
+          <div class="banner-actions" id="banner-actions"></div>
+        </div>
+      <div class="status-line" id="status-line">Connecting…</div>
+      <div class="actions hidden" id="actions">
+        <div class="sizing" id="sizing">
+          <div class="quick">
+            <button class="btn btn-chip" data-size="min">Min</button>
+            <button class="btn btn-chip" data-size="half">½ Pot</button>
+            <button class="btn btn-chip" data-size="pot">Pot</button>
+            <button class="btn btn-chip" data-size="allin">All-in</button>
+          </div>
+          <div class="slider-row">
+            <input type="range" id="raise-slider" aria-label="Raise amount">
+            <input type="number" id="raise-input" inputmode="numeric" aria-label="Raise to">
+          </div>
+        </div>
+        <div class="main-actions">
+          <button class="btn btn-fold" id="btn-fold">Fold</button>
+          <button class="btn btn-call" id="btn-call">Check</button>
+          <button class="btn btn-raise" id="btn-raise">Raise</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <aside class="history" id="history" aria-label="Hand history">
+    <div class="history-head"><h2>Hand history</h2><button class="btn btn-ghost btn-sm history-close" id="history-close">✕</button></div>
+    <div class="history-body" id="history-body"></div>
+  </aside>
+</div>
+
+<div class="toast hidden" id="toast" role="alert"></div>
+<script src="/static/js/common.js"></script>
+<script src="/static/js/play.js"></script>
+</body>
+</html>
