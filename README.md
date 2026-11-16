@@ -5,7 +5,7 @@
 ## ▶️ [Play it now: jumpstreetpokerbot.fly.dev](https://jumpstreetpokerbot.fly.dev)
 
 This is the bot that won **first place** at the Imperial AI Hack Pokerbots competition. Pick a username,
-play a 50-hand match of heads-up no-limit Texas hold'em against it, and see where you land on the public
+play a 10-hand match of heads-up no-limit Texas hold'em against it, and see where you land on the public
 leaderboard.
 
 ---
@@ -33,7 +33,7 @@ If you came looking for the strategy: sorry! Playing it is the closest you'll ge
 | Game | Heads-up no-limit Texas hold'em: you vs the bot |
 | Blinds | 10 / 20 |
 | Stacks | 2,000 chips (100 big blinds), reset every hand |
-| Match length | 50 hands, with the dealer button alternating |
+| Match length | 10 hands, with the dealer button alternating |
 | Your score | Big blinds won or lost over the match |
 
 - **No account needed.** Choose a username and your browser remembers it. Nobody else can use your name while
@@ -43,14 +43,14 @@ If you came looking for the strategy: sorry! Playing it is the closest you'll ge
 - **The leaderboard** shows each player's best match, plus the bot's overall record against everyone.
 
 Fair warning: the bot was built for the competition's format, and here it's playing one person, heads-up,
-for 50 hands. It still doesn't like losing.
+for 10 hands. It still doesn't like losing.
 
 ## Tip
 
 - Use the **½ Pot**, **Pot** and **All-in** buttons to size bets quickly. On a keyboard, `F` folds, `C`
   checks or calls, and `R` raises.
 - The **History** panel shows every hand of your match, including the bot's cards whenever you saw a showdown.
-- 50 hands goes fast: a full match takes about 10–15 minutes.
+- A match is quick: 10 hands takes about 2–3 minutes.
 
 ---
 

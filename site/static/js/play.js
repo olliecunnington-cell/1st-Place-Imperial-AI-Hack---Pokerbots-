@@ -388,7 +388,7 @@
     const banner = $("banner");
     banner.className = "banner";
     $("banner-title").textContent = "No match in progress";
-    $("banner-sub").textContent = "Start a new 50-hand match against the bot.";
+    $("banner-sub").textContent = "Start a new match against the bot.";
     const acts = $("banner-actions"); acts.textContent = "";
     const b = el("button", "btn btn-primary", "Start match"); b.addEventListener("click", newMatch);
     acts.append(b);

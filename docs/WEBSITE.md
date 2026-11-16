@@ -3,7 +3,7 @@
 This is the technical side of the repo: how the site in [`site/`](../site) runs the bot without exposing it,
 and how to run and deploy it yourself. For what the project is, see the [main README](../README.md).
 
-- **Format:** blinds 10/20, 100bb (2,000 chip) stacks reset every hand, button alternates, 50 hands per match.
+- **Format:** blinds 10/20, 100bb (2,000 chip) stacks reset every hand, button alternates, 10 hands per match.
 - **Stack:** FastAPI + WebSockets, SQLite, plain HTML/CSS/JS (no build step).
 
 ## Repository layout
@@ -206,7 +206,7 @@ client cannot spoof that entry. If several users turn out to share an IP in the 
 | `APP_ENV` | `development` (`production` in Docker) | Production refuses to start without `SECRET_KEY` and enables secure cookies. |
 | `DB_PATH` | `site/data/poker.db` (`/data/poker.db` in Docker) | SQLite file. |
 | `BOT_SOURCE_B64` / `BOT_PATH` | the secret, then `$BOT_PATH`, `/etc/secrets/bot.py`, `site/bot.py`, `bot.py` | Where to load the bot from. |
-| `MATCH_HANDS` | `50` | Hands per match. |
+| `MATCH_HANDS` | `10` | Hands per match. |
 | `BOT_DELAY_MIN` / `BOT_DELAY_MAX` | `0.7` / `1.4` | Seconds before the bot acts. |
 | `BOT_TIMEOUT` | `3.0` | Hard limit per bot call. |
 | `BOT_WORKERS` | `2` | Bot worker processes. |

@@ -58,7 +58,7 @@ class Match:
 class MatchManager:
     def __init__(self, pool: BotPool, hands_total: int | None = None):
         self.pool = pool
-        self.hands_total = hands_total or int(os.environ.get("MATCH_HANDS", "50"))
+        self.hands_total = hands_total or int(os.environ.get("MATCH_HANDS", "10"))
         self.idle_timeout = _env_float("MATCH_IDLE_SECONDS", "600")
         self.delay_min = _env_float("BOT_DELAY_MIN", "0.7")
         self.delay_max = _env_float("BOT_DELAY_MAX", "1.4")
