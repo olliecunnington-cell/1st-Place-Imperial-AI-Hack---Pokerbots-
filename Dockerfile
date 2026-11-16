@@ -9,16 +9,17 @@ ENV PYTHONDONTWRITEBYTECODE=1 \
 WORKDIR /app
 RUN useradd --create-home --uid 10001 poker && mkdir -p /data && chown poker:poker /data
 
-COPY requirements.txt .
+COPY site/requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-COPY app/ ./app/
-COPY static/ ./static/
-# bot.py is optional here: the bracket glob lets the build succeed without it (for example on
-# Render, where it is mounted at runtime as the secret file /etc/secrets/bot.py instead).
-COPY requirements.txt bot.p[y] ./
+COPY site/app/ ./app/
+COPY site/static/ ./static/
+# bot.py (repo root, git-ignored) is optional: the bracket glob lets the build succeed without it.
+# Builds from GitHub never have it; the bot then comes from the BOT_SOURCE_B64 secret or
+# Render's /etc/secrets/bot.py instead.
+COPY site/requirements.txt bot.p[y] ./
 RUN if [ -f bot.py ]; then chown poker:poker bot.py && chmod 0400 bot.py; fi
-COPY docker-entrypoint.sh /usr/local/bin/docker-entrypoint.sh
+COPY site/docker-entrypoint.sh /usr/local/bin/docker-entrypoint.sh
 RUN chmod 0755 /usr/local/bin/docker-entrypoint.sh
 
 EXPOSE 8080

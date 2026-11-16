@@ -43,8 +43,9 @@ def find_bot_path() -> str:
     secret_path = _bot_from_secret()
     if secret_path:
         return secret_path
+    here = Path(__file__).resolve().parent.parent          # site/ locally, /app in Docker
     candidates = [os.environ.get("BOT_PATH"), "/etc/secrets/bot.py",
-                  str(Path(__file__).resolve().parent.parent / "bot.py")]
+                  str(here / "bot.py"), str(here.parent / "bot.py")]
     for c in candidates:
         if c and Path(c).is_file():
             return c
