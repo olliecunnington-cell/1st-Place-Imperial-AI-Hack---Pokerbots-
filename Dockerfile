@@ -4,7 +4,7 @@ ENV PYTHONDONTWRITEBYTECODE=1 \
     PYTHONUNBUFFERED=1 \
     APP_ENV=production \
     DB_PATH=/data/poker.db \
-    PORT=8000
+    PORT=8080
 
 WORKDIR /app
 RUN useradd --create-home --uid 10001 poker && mkdir -p /data && chown poker:poker /data
@@ -21,7 +21,7 @@ RUN if [ -f bot.py ]; then chown poker:poker bot.py && chmod 0400 bot.py; fi
 COPY docker-entrypoint.sh /usr/local/bin/docker-entrypoint.sh
 RUN chmod 0755 /usr/local/bin/docker-entrypoint.sh
 
-EXPOSE 8000
+EXPOSE 8080
 VOLUME ["/data"]
 ENTRYPOINT ["docker-entrypoint.sh"]
 # One process only: matches live in memory and SQLite has a single writer.

@@ -115,7 +115,7 @@ docker build -t headsup-bot .
 ```
 
 ```bash
-docker run -p 8000:8000 -e SECRET_KEY="$(openssl rand -hex 32)" -e COOKIE_SECURE=0 -v headsup_data:/data headsup-bot
+docker run -p 8000:8080 -e SECRET_KEY="$(openssl rand -hex 32)" -e COOKIE_SECURE=0 -v headsup_data:/data headsup-bot
 ```
 
 `COOKIE_SECURE=0` is only for plain `http://localhost`. Leave it unset behind HTTPS. The container runs as an
