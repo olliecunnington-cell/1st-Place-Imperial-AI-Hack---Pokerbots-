@@ -45,7 +45,7 @@ If you came looking for the strategy: sorry! Playing it is the closest you'll ge
 Fair warning: the bot was built for the competition's format, and here it's playing one person, heads-up,
 for 50 hands. It still doesn't like losing.
 
-## Tips
+## Tip
 
 - Use the **½ Pot**, **Pot** and **All-in** buttons to size bets quickly. On a keyboard, `F` folds, `C`
   checks or calls, and `R` raises.
